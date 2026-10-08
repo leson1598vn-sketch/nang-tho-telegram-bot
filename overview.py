@@ -5,7 +5,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import ContextTypes
 
 from jobs import build_overview_text
-from .common import answer, esc, require_admin
+from common import answer, esc, require_admin
 
 RANGES = {"today": ("Hôm nay", 1), "7d": ("7 ngày qua", 7), "30d": ("30 ngày qua", 30)}
 

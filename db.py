@@ -11,7 +11,7 @@ from datetime import date, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-SCHEMA_PATH = Path(__file__).resolve().parent / "db" / "schema.sql"
+SCHEMA_PATH = Path(__file__).resolve().parent / "schema.sql"
 TZ = ZoneInfo("Asia/Ho_Chi_Minh")
 
 _PG_PH = re.compile(r"\$\d+")

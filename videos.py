@@ -9,7 +9,7 @@ from telegram.ext import ContextTypes
 import fb_client
 from db import TZ, parse_ts
 from formatters import fmt_dt_local, fmt_int, fmt_num, fmt_vnd, fmt_watch, pct, short
-from .common import answer, esc, require_admin
+from common import answer, esc, require_admin
 
 PAGE_SIZE = 5
 

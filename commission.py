@@ -8,7 +8,7 @@ from telegram.ext import ContextTypes
 
 from db import TZ, parse_day
 from formatters import code_table, fmt_int, fmt_vnd, pct
-from .common import answer, esc, require_admin
+from common import answer, esc, require_admin
 
 
 def _kb() -> InlineKeyboardMarkup:

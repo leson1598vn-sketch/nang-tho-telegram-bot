@@ -13,7 +13,7 @@ from telegram.ext import (CallbackQueryHandler, CommandHandler, ContextTypes,
 
 from db import TZ, parse_day
 from formatters import fmt_vnd, short
-from .common import answer, esc, require_admin
+from common import answer, esc, require_admin
 
 # states
 (T_TITLE, T_PRODUCT, T_PRICE, T_FBID, T_LINK, T_CONFIRM,

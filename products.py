@@ -8,7 +8,7 @@ from telegram.ext import ContextTypes
 
 from db import TZ
 from formatters import fmt_int, fmt_num, fmt_vnd, pct, short
-from .common import answer, esc, require_admin
+from common import answer, esc, require_admin
 
 CB_MAX = 36  # keep callback_data under Telegram's 64-byte limit
 

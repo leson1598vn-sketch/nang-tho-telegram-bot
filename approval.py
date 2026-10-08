@@ -11,7 +11,7 @@ from telegram.ext import ContextTypes
 
 from db import parse_ts
 from formatters import fmt_dt_local
-from .common import answer, esc, require_admin
+from common import answer, esc, require_admin
 
 
 def _kb(pid: int) -> InlineKeyboardMarkup:

@@ -20,7 +20,7 @@ log = logging.getLogger("bot")
 from api import create_api  # noqa: E402
 from config import load_config  # noqa: E402
 from db import DB, TZ  # noqa: E402
-from handlers import build_application  # noqa: E402
+from bot_handlers import build_application  # noqa: E402
 from jobs import setup_scheduler  # noqa: E402
 
 

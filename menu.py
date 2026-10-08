@@ -4,8 +4,8 @@ from __future__ import annotations
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from . import approval, commission, overview, products, reports, system, videos
-from .common import answer, esc, main_menu_kb, require_admin
+import approval, commission, overview, products, reports, system, videos
+from common import answer, esc, main_menu_kb, require_admin
 
 
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:

@@ -5,7 +5,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import ContextTypes
 
 from jobs import send_daily_report, send_weekly_report
-from .common import answer, require_admin
+from common import answer, require_admin
 
 
 async def _states(db) -> tuple[str, str]:

@@ -9,7 +9,7 @@ from telegram.ext import ContextTypes
 import fb_client
 from db import TZ, parse_ts
 from shopee_client import ShopeeClient
-from .common import answer, esc, require_admin
+from common import answer, esc, require_admin
 
 
 async def show_status(query, context: ContextTypes.DEFAULT_TYPE) -> None:
