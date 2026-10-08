@@ -1,9 +1,27 @@
 """Handler package: registers every command / callback with the PTB Application."""
 from __future__ import annotations
 
+import logging
+
 from telegram.ext import Application, CallbackQueryHandler, CommandHandler
 
 import admin_conversations, approval, commission, menu, overview, products, reports, system, videos
+from common import esc
+
+log = logging.getLogger("bot_handlers")
+
+
+async def _on_error(update, context) -> None:
+    """Báo lỗi handler về cho admin để dễ debug (thay vì nút bấm 'đứng im')."""
+    log.exception("Handler error: %s", context.error)
+    try:
+        cfg = context.application.bot_data["config"]
+        for admin_id in cfg.admin_chat_ids:
+            await context.bot.send_message(
+                admin_id,
+                f"⚠️ Bot gặp lỗi khi xử lý: {esc(str(context.error))[:400]}")
+    except Exception:
+        pass
 
 
 def build_application(cfg, db) -> Application:
@@ -29,4 +47,5 @@ def build_application(cfg, db) -> Application:
     application.add_handler(CallbackQueryHandler(commission.on_callback, pattern=r"^c:"))
     application.add_handler(CallbackQueryHandler(approval.on_callback, pattern=r"^a:"))
     application.add_handler(CallbackQueryHandler(reports.on_callback, pattern=r"^r:"))
+    application.add_error_handler(_on_error)
     return application
