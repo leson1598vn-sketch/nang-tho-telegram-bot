@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: nang-tho-telegram-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    healthCheckPath: /health
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: ADMIN_CHAT_ID
+        sync: false
+      - key: WEBHOOK_URL
+        sync: false # VD: https://nang-tho-telegram-bot.onrender.com (điền sau khi deploy lần đầu)
+      - key: WEBHOOK_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false # URL Postgres của Neon
+      - key: FB_PAGE_ID
+        value: 1367543446440909
+      - key: FB_PAGE_TOKEN
+        sync: false
+      - key: SHOPEE_API_BASE_URL
+        sync: false
+      - key: SHOPEE_APPID
+        sync: false
+      - key: SHOPEE_SECRET
+        sync: false
+      - key: N8N_WEBHOOK_SECRET
+        generateValue: true
+      - key: N8N_WEBHOOK_URL
+        sync: false
+      - key: PORT
+        value: 10000
+      - key: TZ
+        value: Asia/Ho_Chi_Minh
