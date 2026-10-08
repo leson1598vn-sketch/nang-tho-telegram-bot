@@ -47,6 +47,17 @@ def parse_day(v) -> str | None:
     return str(v)[:10]
 
 
+def to_date(v) -> date | None:
+    """Return a real date object for DB query params (asyncpg needs date, not str)."""
+    if v is None:
+        return None
+    if isinstance(v, datetime):
+        return v.date()
+    if isinstance(v, date):
+        return v
+    return date.fromisoformat(str(v)[:10])
+
+
 class DB:
     def __init__(self, database_url: str = ""):
         self.database_url = (database_url or "").strip()
@@ -186,14 +197,14 @@ class DB:
             " ON CONFLICT (day, product_name) DO UPDATE SET"
             " clicks=excluded.clicks, orders=excluded.orders,"
             " commission_vnd=excluded.commission_vnd, source=excluded.source",
-            parse_day(day), product_name, int(clicks), int(orders),
+            to_date(day), product_name, int(clicks), int(orders),
             int(commission_vnd), source)
 
     async def shopee_range(self, day_from, day_to) -> list[dict]:
         return await self._fetch(
             "SELECT day, product_name, clicks, orders, commission_vnd, source FROM shopee_daily"
             " WHERE day >= $1 AND day <= $2 ORDER BY day DESC",
-            parse_day(day_from), parse_day(day_to))
+            to_date(day_from), to_date(day_to))
 
     async def product_names(self) -> list[str]:
         rows = await self._fetch(
