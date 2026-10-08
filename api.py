@@ -31,11 +31,9 @@ def create_api(ptb_app, db, cfg) -> FastAPI:
             await ptb_app.bot.set_webhook(url=url, allowed_updates=Update.ALL_TYPES)
             log.info("Telegram webhook set")
         yield
-        try:
-            if cfg.webhook_url:
-                await ptb_app.bot.delete_webhook()
-        except Exception:
-            pass
+        # NOTE: không gọi delete_webhook() ở đây — khi Render deploy bản mới,
+        # instance cũ shutdown sau khi instance mới đã set webhook; xóa lúc này
+        # sẽ làm mất webhook của instance mới khiến bot không nhận tin nhắn.
         await ptb_app.stop()
         await ptb_app.shutdown()
 
